@@ -1,0 +1,8 @@
+{
+  "public-client": true,
+  "resource": "solecoder-scrabble-core",
+  "principal-attribute": "preferred_username",
+  "realm": "solecoder-scrabble-realm",
+  "ssl-required": "external",
+  "auth-server-url": "http://localhost:8080/auth"
+}
