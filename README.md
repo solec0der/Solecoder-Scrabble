@@ -1,4 +1,6 @@
-# Solecoder Scrabble
+# Solecoder Scrabble 
+
+![Build](https://github.com/solec0der/Solecoder-Scrabble/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 
 ## Table of Contents
 
