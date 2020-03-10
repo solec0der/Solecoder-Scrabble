@@ -1,9 +1,0 @@
-server:
-  port: 9090
-
-keycloak:
-  realm: solecoder-scrabble-realm
-  resource: solecoder-scrabble-core
-  ssl-required: external
-  principal-attribute: preffered_username
-  auth-server-url: http://localhost:8080/auth
