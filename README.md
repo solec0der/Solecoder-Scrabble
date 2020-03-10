@@ -6,6 +6,7 @@
 
 * [Prerequisites](#prerequisites)
     * [Keycloak](#keycloak)
+    * [PostgreSQL](#postgresql)
 
 ## Prerequisites
 
@@ -125,3 +126,22 @@ Then simply adapt the settings in ch/solecoder/scrabble/config/application.yml i
     }
 }
 ```
+
+### PostgreSQL
+
+This service uses PostgreSQL as a database system. To install PostgreSQL using Docker, follow the steps below:
+
+```shell script
+# This will create a docker container with a postgresql instance. the root password can be set too.
+
+$ docker run --name pg-docker -e POSTGRES_PASSWORD=root -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres
+```
+
+After that, a new database *solecoder* has to be created. In that database, create a new schema *scrabble*.
+
+```sql
+-- To create the schema
+CREATE SCHEMA scrabble;
+```
+
+

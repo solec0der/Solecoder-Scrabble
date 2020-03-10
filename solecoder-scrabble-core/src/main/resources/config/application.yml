@@ -1,5 +1,29 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: Solecoder Scrabble
+  datasource:
+    url: jdbc:postgresql://localhost:5432/solecoder
+    username: scrabble
+    password: scrabble
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: true
+
+info:
+  app:
+    name: Solecoder Scrabble
+
 server:
   port: 9090
+  servlet:
+    context-path: /solecoder-scrabble-core
 
 keycloak:
   realm: solecoder-scrabble-realm
