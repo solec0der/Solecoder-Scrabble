@@ -11,6 +11,7 @@ import ch.solecoder.scrabble.dto.TranslationKeyDTO;
 import ch.solecoder.scrabble.service.converter.TranslationConverter;
 import ch.solecoder.scrabble.service.exception.LanguageNotFoundException;
 import ch.solecoder.scrabble.service.exception.TranslationKeyNotFoundException;
+import ch.solecoder.scrabble.service.exception.TranslationNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +83,45 @@ public class TranslationService {
             translationsAsMap.put(translationKey.getKey(), translations);
         }
         return translationsAsMap;
+    }
+
+    public TranslationDTO updateTranslation(long id, TranslationDTO translationDTO) {
+        Translation translation = translationRepository.findById(id).orElseThrow(TranslationNotFoundException::new);
+
+        Language language = languageRepository
+                .findById(translationDTO.getLanguage().getId())
+                .orElseThrow(LanguageNotFoundException::new);
+
+        TranslationKey translationKey = translationKeyRepository
+                .findById(translationDTO.getTranslationKeyId())
+                .orElseThrow(TranslationKeyNotFoundException::new);
+
+        translation = translation.toBuilder()
+                .id(id)
+                .language(language)
+                .translationKey(translationKey)
+                .value(translationDTO.getValue())
+                .build();
+
+        return TranslationConverter.convertToDTO(translationRepository.save(translation));
+    }
+
+    public TranslationKeyDTO updateTranslationKey(long id, TranslationKeyDTO translationKeyDTO) {
+        TranslationKey translationKey = translationKeyRepository.findById(id).orElseThrow(TranslationKeyNotFoundException::new);
+
+        translationKey = translationKey.toBuilder()
+                .id(id)
+                .key(translationKeyDTO.getKey())
+                .build();
+
+        return TranslationConverter.convertToDTO(translationKeyRepository.save(translationKey));
+    }
+
+    public void deleteTranslation(long id) {
+        translationRepository.deleteById(id);
+    }
+
+    public void deleteTranslationKey(long id) {
+        translationKeyRepository.deleteById(id);
     }
 }
