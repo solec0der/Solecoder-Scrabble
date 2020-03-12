@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 public class ScrabbleSecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder builder) {
         KeycloakAuthenticationProvider keycloakAuthenticationProvider = keycloakAuthenticationProvider();
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
         builder.authenticationProvider(keycloakAuthenticationProvider);
@@ -38,6 +38,7 @@ public class ScrabbleSecurityConfiguration extends KeycloakWebSecurityConfigurer
         super.configure(http);
 
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/**").hasRole("scrabble-user")
                 .anyRequest().permitAll();
