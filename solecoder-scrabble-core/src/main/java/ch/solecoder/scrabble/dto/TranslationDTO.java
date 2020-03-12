@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class LanguageDTO {
+public class TranslationDTO {
 
     private long id;
-    private String displayValue;
-    private String langCode;
-    private String uiLangCode;
+    private long translationKeyId;
+    private LanguageDTO language;
+    private String value;
 
 }

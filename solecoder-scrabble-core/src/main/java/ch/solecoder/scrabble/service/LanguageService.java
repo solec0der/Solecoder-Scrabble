@@ -20,6 +20,11 @@ public class LanguageService {
 
     private final LanguageRepository languageRepository;
 
+    public LanguageDTO createLanguage(LanguageDTO languageDTO) {
+        Language language = LanguageConverter.convertToDomain(languageDTO);
+        return LanguageConverter.convertToDTO(languageRepository.save(language));
+    }
+
     public List<LanguageDTO> getLanguages() {
         List<Language> languages = languageRepository.findAll();
 
@@ -31,5 +36,21 @@ public class LanguageService {
     public LanguageDTO getLanguageById(long id) {
         Language language = languageRepository.findById(id).orElseThrow(LanguageNotFoundException::new);
         return LanguageConverter.convertToDTO(language);
+    }
+
+    public LanguageDTO updateLanguage(long languageId, LanguageDTO languageDTO) {
+        Language language = languageRepository.findById(languageId).orElseThrow(LanguageNotFoundException::new);
+
+        language = language.toBuilder()
+                .displayValue(languageDTO.getDisplayValue())
+                .langCode(languageDTO.getLangCode())
+                .uiLangCode(languageDTO.getUiLangCode())
+                .build();
+
+        return LanguageConverter.convertToDTO(languageRepository.save(language));
+    }
+
+    public void deleteLanguage(long languageId) {
+        languageRepository.deleteById(languageId);
     }
 }

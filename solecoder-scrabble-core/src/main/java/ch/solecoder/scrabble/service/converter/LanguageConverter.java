@@ -12,7 +12,7 @@ public class LanguageConverter {
         return languageDTO == null ? null :
                 Language.builder()
                         .id(languageDTO.getId())
-                        .language(languageDTO.getLanguage())
+                        .displayValue(languageDTO.getDisplayValue())
                         .langCode(languageDTO.getLangCode())
                         .uiLangCode(languageDTO.getUiLangCode())
                         .build();
@@ -22,7 +22,7 @@ public class LanguageConverter {
         return language == null ? null :
                 LanguageDTO.builder()
                         .id(language.getId())
-                        .language(language.getLanguage())
+                        .displayValue(language.getDisplayValue())
                         .langCode(language.getLangCode())
                         .uiLangCode(language.getUiLangCode())
                         .build();
