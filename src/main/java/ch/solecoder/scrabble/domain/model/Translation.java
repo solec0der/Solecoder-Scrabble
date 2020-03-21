@@ -3,6 +3,7 @@ package ch.solecoder.scrabble.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder(toBuilder = true)
@@ -22,7 +23,7 @@ public class Translation {
     @ManyToOne
     private Language language;
 
-    @NonNull
+    @NotNull
     @Column(name = "value")
     private String value;
 }

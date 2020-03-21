@@ -7,25 +7,27 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "translation_keys")
+@Table(name = "letters")
 @NoArgsConstructor(force = true)
-public class TranslationKey {
+public class Letter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "value", length = 1)
+    private String value;
+
     @NotNull
-    @Column(name = "key")
-    private String key;
+    @Column(name = "score")
+    private int score;
 
-    @OneToMany(cascade = {CascadeType.ALL},targetEntity = Translation.class, mappedBy = "translationKey", fetch = FetchType.LAZY)
-    private List<Translation> translations;
-
+    @NotNull
+    @Column(name = "joker")
+    private boolean joker;
 }

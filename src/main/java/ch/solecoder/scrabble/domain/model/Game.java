@@ -13,19 +13,22 @@ import java.util.List;
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "translation_keys")
+@Table(name = "games")
 @NoArgsConstructor(force = true)
-public class TranslationKey {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
-    @Column(name = "key")
-    private String key;
+    @Column(name = "title")
+    private String title;
 
-    @OneToMany(cascade = {CascadeType.ALL},targetEntity = Translation.class, mappedBy = "translationKey", fetch = FetchType.LAZY)
-    private List<Translation> translations;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "language_id", referencedColumnName = "id")
+    private Language language;
 
+    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = GameField.class, mappedBy = "game", fetch = FetchType.LAZY)
+    private List<GameField> gameFields;
 }

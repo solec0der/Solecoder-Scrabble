@@ -7,32 +7,36 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "languages")
+@Table(name = "game_fields")
 @NoArgsConstructor(force = true)
-public class Language {
+public class GameField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
-    @Column(name = "display_value")
-    private String displayValue;
+    @Column(name = "x_position")
+    private int xPosition;
 
     @NotNull
-    @Column(name = "lang_code")
-    private String langCode;
+    @Column(name = "y_position")
+    private int yPosition;
+
+    @ManyToOne
+    private Game game;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "letter_id", referencedColumnName = "id")
+    private Letter letter;
 
     @NotNull
-    @Column(name = "ui_lang_code")
-    private String uiLangCode;
-
-    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Translation.class, mappedBy = "language", fetch = FetchType.LAZY)
-    private List<Translation> translations;
+    @Column(name = "field_type")
+    @Enumerated(EnumType.STRING)
+    private FieldType fieldType;
 }
