@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 public class LetterConverter {
 
     public static Letter convertToDomain(LetterDTO letterDTO) {
-        return Letter.builder()
+        return letterDTO == null ? null :
+                Letter.builder()
                 .id(letterDTO.getId())
                 .value(letterDTO.getValue())
                 .score(letterDTO.getScore())
@@ -18,7 +19,8 @@ public class LetterConverter {
     }
 
     public static LetterDTO convertToDTO(Letter letter) {
-        return LetterDTO.builder()
+        return letter == null ? null :
+                LetterDTO.builder()
                 .id(letter.getId())
                 .value(letter.getValue())
                 .score(letter.getScore())

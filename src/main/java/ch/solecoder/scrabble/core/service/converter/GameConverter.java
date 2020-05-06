@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 public class GameConverter {
 
     public static Game convertToDomain(GameDTO gameDTO) {
-        return Game.builder()
+        return gameDTO == null ? null :
+                Game.builder()
                 .id(gameDTO.getId())
                 .title(gameDTO.getTitle())
                 .language(LanguageConverter.convertToDomain(gameDTO.getLanguage()))
@@ -23,7 +24,8 @@ public class GameConverter {
     }
 
     public static GameDTO convertToDTO(Game game) {
-        return GameDTO.builder()
+        return game == null ? null :
+                GameDTO.builder()
                 .id(game.getId())
                 .title(game.getTitle())
                 .language(LanguageConverter.convertToDTO(game.getLanguage()))

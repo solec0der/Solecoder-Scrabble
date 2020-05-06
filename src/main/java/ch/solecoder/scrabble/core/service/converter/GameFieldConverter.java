@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 public class GameFieldConverter {
 
     public static GameField convertToDomain(GameFieldDTO gameFieldDTO) {
-        return GameField.builder()
+        return gameFieldDTO == null ? null :
+                GameField.builder()
                 .id(gameFieldDTO.getId())
                 .xPosition(gameFieldDTO.getXPosition())
                 .yPosition(gameFieldDTO.getYPosition())
@@ -19,7 +20,8 @@ public class GameFieldConverter {
     }
 
     public static GameFieldDTO convertToDTO(GameField gameField) {
-        return GameFieldDTO.builder()
+        return gameField == null ? null :
+                GameFieldDTO.builder()
                 .id(gameField.getId())
                 .xPosition(gameField.getXPosition())
                 .yPosition(gameField.getYPosition())

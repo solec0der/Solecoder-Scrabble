@@ -1,7 +1,6 @@
 spring:
   profiles:
     active: dev
-    include: domain
   application:
     name: Solecoder Scrabble
   datasource:
