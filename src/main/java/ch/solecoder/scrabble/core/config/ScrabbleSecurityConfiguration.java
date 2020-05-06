@@ -41,7 +41,7 @@ public class ScrabbleSecurityConfiguration extends KeycloakWebSecurityConfigurer
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/admin/**").hasRole("scrabble-admin")
-                .antMatchers("/api/**").hasRole("scrabble-user")
+                .antMatchers("/api/**").hasAnyRole("scrabble-user", "scrabble-admin")
                 .anyRequest().permitAll();
     }
 }
