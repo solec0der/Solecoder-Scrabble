@@ -14,7 +14,6 @@ import ch.solecoder.scrabble.domain.repository.TranslationKeyRepository;
 import ch.solecoder.scrabble.domain.repository.TranslationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -24,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class TranslationService {
 
   private final TranslationRepository translationRepository;

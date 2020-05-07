@@ -3,14 +3,16 @@ package ch.solecoder.scrabble.core.infrastructure;
 import ch.solecoder.scrabble.core.dto.LanguageDTO;
 import ch.solecoder.scrabble.core.service.LanguageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/languages")
-@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class LanguageController {
 
     private final LanguageService languageService;
