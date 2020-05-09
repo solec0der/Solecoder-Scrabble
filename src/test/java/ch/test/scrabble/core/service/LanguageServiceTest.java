@@ -73,9 +73,9 @@ public class LanguageServiceTest {
         LanguageDTO expected = LanguageTestData.getLanguageDTOS().get(0);
 
         String resultJson = objectMapper.writeValueAsString(result);
-        String excpectedJson = objectMapper.writeValueAsString(expected);
+        String expectedJson = objectMapper.writeValueAsString(expected);
 
-        JSONAssert.assertEquals(excpectedJson, resultJson, false);
+        JSONAssert.assertEquals(expectedJson, resultJson, false);
     }
 
     @Test(expected = LanguageNotFoundException.class)

@@ -23,7 +23,10 @@ public class LetterService {
     public LetterDTO createLetter(LetterDTO letterDTO) {
         if (!letterDTO.isJoker() && StringUtils.isEmpty(letterDTO.getValue())) {
             throw new BadRequestException("If it isn't a joker, value has to be set.");
+        } else if (letterDTO.isJoker() && StringUtils.isNotEmpty(letterDTO.getValue())) {
+            throw new BadRequestException("Value can't be set, if it's a joker.");
         }
+
         Letter letter = LetterConverter.convertToDomain(letterDTO);
 
         return LetterConverter.convertToDTO(letterRepository.save(letter));

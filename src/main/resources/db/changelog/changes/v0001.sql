@@ -45,7 +45,7 @@ create table scrabble.game_fields
 create table scrabble.letters
 (
     id    bigserial not null,
-    value varchar(3),
+    value varchar(32),
     score integer   not null,
     joker boolean   not null,
     primary key (id)
