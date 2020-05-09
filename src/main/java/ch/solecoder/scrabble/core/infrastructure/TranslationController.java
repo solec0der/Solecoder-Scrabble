@@ -4,7 +4,6 @@ import ch.solecoder.scrabble.core.dto.TranslationDTO;
 import ch.solecoder.scrabble.core.dto.TranslationKeyDTO;
 import ch.solecoder.scrabble.core.service.TranslationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/translations")
-@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class TranslationController {
 
     private final TranslationService translationService;

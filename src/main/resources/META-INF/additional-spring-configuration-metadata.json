@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "authentication.frontend-client-id",
+      "type": "java.lang.String",
+      "description": "Keycloak Client Id for Frontend."
+  }
+] }

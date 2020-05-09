@@ -11,21 +11,24 @@ import lombok.NoArgsConstructor;
 public class TranslationConverter {
 
     public static TranslationKey convertToDomain(TranslationKeyDTO translationKeyDTO) {
-        return TranslationKey.builder()
+        return translationKeyDTO == null ? null :
+                TranslationKey.builder()
                 .id(translationKeyDTO.getId())
                 .key(translationKeyDTO.getKey())
                 .build();
     }
 
     public static TranslationKeyDTO convertToDTO(TranslationKey translationKey) {
-        return TranslationKeyDTO.builder()
+        return translationKey == null ? null :
+                TranslationKeyDTO.builder()
                 .id(translationKey.getId())
                 .key(translationKey.getKey())
                 .build();
     }
 
     public static TranslationDTO convertToDTO(Translation translation) {
-        return TranslationDTO.builder()
+        return translation == null ? null :
+                TranslationDTO.builder()
                 .id(translation.getId())
                 .language(LanguageConverter.convertToDTO(translation.getLanguage()))
                 .value(translation.getValue())

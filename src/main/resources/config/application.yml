@@ -1,13 +1,12 @@
 spring:
   profiles:
     active: dev
-    include: domain
   application:
     name: Solecoder Scrabble
   datasource:
     url: jdbc:postgresql://localhost:5432/solecoder?currentSchema=scrabble
-    username: scrabble
-    password: scrabble
+    username: postgres
+    password: root
   jpa:
     properties:
       hibernate:
@@ -21,18 +20,23 @@ info:
   app:
     name: Solecoder Scrabble
     version: @project.version@
+    contact:
+      name: Yannick Huggler
+      url: https://solecoder.ch
+      email: yannick.huggler@bluewin.ch
 
 server:
   port: 9090
-  servlet:
-    context-path: /solecoder-scrabble-core
+
+authentication:
+  frontend-client-id: solecoder-scrabble-core-frontend
 
 keycloak:
   realm: solecoder-scrabble-realm
-  resource: solecoder-scrabble-core
+  resource: solecoder-scrabble-core-backend
   ssl-required: external
-  principal-attribute: preffered_username
+  bearer-only: true
   auth-server-url: http://localhost:8080/auth
   credentials:
-    secret: f1e36f43-8f56-4a52-9489-bdc000d3b2c8
-#  bearer-only: true
+    secret: 40ef18f0-aa2f-4786-ad1e-3b729fed595e
+  cors: true

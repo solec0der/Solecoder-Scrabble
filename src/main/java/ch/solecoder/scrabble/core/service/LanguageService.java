@@ -1,13 +1,12 @@
 package ch.solecoder.scrabble.core.service;
 
-import ch.solecoder.scrabble.domain.model.Language;
-import ch.solecoder.scrabble.domain.repository.LanguageRepository;
 import ch.solecoder.scrabble.core.dto.LanguageDTO;
 import ch.solecoder.scrabble.core.service.converter.LanguageConverter;
 import ch.solecoder.scrabble.core.service.exception.LanguageNotFoundException;
+import ch.solecoder.scrabble.domain.model.Language;
+import ch.solecoder.scrabble.domain.repository.LanguageRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class LanguageService {
 
     private final LanguageRepository languageRepository;

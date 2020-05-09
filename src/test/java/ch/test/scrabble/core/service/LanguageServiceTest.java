@@ -3,7 +3,6 @@ package ch.test.scrabble.core.service;
 import ch.solecoder.scrabble.ScrabbleRestApplication;
 import ch.solecoder.scrabble.core.dto.LanguageDTO;
 import ch.solecoder.scrabble.core.service.LanguageService;
-import ch.solecoder.scrabble.core.service.converter.LanguageConverter;
 import ch.solecoder.scrabble.core.service.exception.LanguageNotFoundException;
 import ch.solecoder.scrabble.domain.model.Language;
 import ch.solecoder.scrabble.domain.repository.LanguageRepository;
@@ -36,7 +35,7 @@ public class LanguageServiceTest {
     @Mock
     private LanguageRepository languageRepository;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     public void shouldCreateLanguageAndReturnLanguageDTO() throws JsonProcessingException, JSONException {
@@ -74,9 +73,9 @@ public class LanguageServiceTest {
         LanguageDTO expected = LanguageTestData.getLanguageDTOS().get(0);
 
         String resultJson = objectMapper.writeValueAsString(result);
-        String excpectedJson = objectMapper.writeValueAsString(expected);
+        String expectedJson = objectMapper.writeValueAsString(expected);
 
-        JSONAssert.assertEquals(excpectedJson, resultJson, false);
+        JSONAssert.assertEquals(expectedJson, resultJson, false);
     }
 
     @Test(expected = LanguageNotFoundException.class)

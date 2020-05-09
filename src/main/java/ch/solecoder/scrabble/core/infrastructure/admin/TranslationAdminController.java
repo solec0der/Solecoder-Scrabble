@@ -4,13 +4,12 @@ import ch.solecoder.scrabble.core.dto.TranslationDTO;
 import ch.solecoder.scrabble.core.dto.TranslationKeyDTO;
 import ch.solecoder.scrabble.core.service.TranslationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/admin/translations")
-@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class TranslationAdminController {
 
     private final TranslationService translationService;

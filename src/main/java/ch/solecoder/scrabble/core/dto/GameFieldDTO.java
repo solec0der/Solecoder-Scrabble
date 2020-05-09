@@ -1,5 +1,6 @@
 package ch.solecoder.scrabble.core.dto;
 
+import ch.solecoder.scrabble.domain.model.FieldType;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -10,11 +11,13 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class TranslationDTO {
+public class GameFieldDTO {
 
     private long id;
-    private long translationKeyId;
-    private LanguageDTO language;
-    private String value;
+    private int xPosition;
+    private int yPosition;
+    private long gameId;
+    private LetterDTO letter;
+    private FieldType fieldType;
 
 }
