@@ -27,6 +27,7 @@ create table scrabble.games
 (
     id          bigserial    not null,
     title       varchar(255) not null,
+    status      varchar(32)  not null,
     language_id bigserial    not null,
     primary key (id)
 );

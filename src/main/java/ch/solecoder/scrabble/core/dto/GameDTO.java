@@ -1,5 +1,6 @@
 package ch.solecoder.scrabble.core.dto;
 
+import ch.solecoder.scrabble.domain.model.Game;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ public class GameDTO {
 
     private long id;
     private String title;
+    private Game.Status status;
     private LanguageDTO language;
     private List<GameFieldDTO> gameFields;
 

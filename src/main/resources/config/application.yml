@@ -27,8 +27,6 @@ info:
 
 server:
   port: 9090
-  servlet:
-    context-path: /solecoder-scrabble-core
 
 authentication:
   frontend-client-id: solecoder-scrabble-core-frontend

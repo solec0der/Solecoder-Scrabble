@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,10 +26,20 @@ public class Game {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Game.Status status;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "language_id", referencedColumnName = "id")
     private Language language;
 
     @OneToMany(cascade = {CascadeType.ALL}, targetEntity = GameField.class, mappedBy = "game", fetch = FetchType.LAZY)
-    private List<GameField> gameFields;
+    private List<GameField> gameFields = new ArrayList<>();
+
+    public enum Status {
+        NOT_STARTED,
+        RUNNING,
+        FINISHED
+    }
 }
