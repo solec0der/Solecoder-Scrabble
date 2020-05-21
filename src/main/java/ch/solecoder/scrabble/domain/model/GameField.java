@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "game_fields")
+@Table(name = "game_fields", schema = "scrabble")
 @NoArgsConstructor(force = true)
 public class GameField {
 

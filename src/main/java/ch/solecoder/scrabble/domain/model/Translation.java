@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "translations")
+@Table(name = "translations", schema = "scrabble")
 @NoArgsConstructor(force = true)
 public class Translation {
 

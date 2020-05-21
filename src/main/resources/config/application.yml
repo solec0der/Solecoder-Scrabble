@@ -31,6 +31,11 @@ server:
 authentication:
   frontend-client-id: solecoder-scrabble-core-frontend
 
+keycloak-admin:
+  client-id: admin-cli
+  username: admin
+  password: admin
+
 keycloak:
   realm: solecoder-scrabble-realm
   resource: solecoder-scrabble-core-backend

@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.keycloak.exception;
+package ch.solecoder.scrabble.libs.keycloak.exception;
 
 import feign.Response;
 import lombok.Getter;

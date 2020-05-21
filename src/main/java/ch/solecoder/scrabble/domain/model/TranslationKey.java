@@ -13,7 +13,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "translation_keys")
+@Table(name = "translation_keys", schema = "scrabble")
 @NoArgsConstructor(force = true)
 public class TranslationKey {
 

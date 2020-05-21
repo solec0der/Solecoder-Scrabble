@@ -1,9 +1,7 @@
 package ch.solecoder.scrabble.core.config;
 
-import ch.solecoder.scrabble.keycloak.client.KeycloakUserClient;
-import ch.solecoder.scrabble.keycloak.exception.FeignClientStatusCodeException;
-import ch.solecoder.scrabble.net.Urls;
-import ch.solecoder.scrabble.net.services.KeycloakUrls;
+import ch.solecoder.scrabble.libs.keycloak.client.KeycloakUserClient;
+import ch.solecoder.scrabble.libs.keycloak.exception.FeignClientStatusCodeException;
 import feign.Client;
 import feign.Contract;
 import feign.Feign;
@@ -12,6 +10,7 @@ import feign.codec.Decoder;
 import feign.codec.Encoder;
 import feign.codec.ErrorDecoder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -23,9 +22,14 @@ import static feign.FeignException.errorStatus;
 @Import(org.springframework.cloud.openfeign.FeignClientsConfiguration.class)
 public class FeignClientConfiguration {
 
+    @Value("${keycloak.auth-server-url}")
+    private String keycloakServerUrl;
+
     private final Decoder decoder;
     private final Encoder encoder;
     private final Contract contract;
+
+    private final KeycloakTokenInterceptor keycloakTokenInterceptor;
 
     @Bean
     public Client feignClient() {
@@ -43,8 +47,8 @@ public class FeignClientConfiguration {
     }
 
     @Bean
-    public KeycloakUserClient keycloakUserClient(Urls urls) {
-        return createClient(urls.getUrl(KeycloakUrls.KEYCLOAK_AUTH_SERVER), KeycloakUserClient.class);
+    public KeycloakUserClient keycloakUserClient() {
+        return createClient(keycloakServerUrl, KeycloakUserClient.class);
     }
 
     private <T> T createClient(String serviceUrl, Class<T> clientClass) {
@@ -56,6 +60,7 @@ public class FeignClientConfiguration {
                 .client(feignClient()).contract(contract)
                 .encoder(encoder).decoder(decoder)
                 .errorDecoder(errorDecoder())
+                .requestInterceptor(keycloakTokenInterceptor)
                 .retryer(Retryer.NEVER_RETRY)
                 .target(clientClass, serviceUrl);
     }

@@ -13,7 +13,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "languages")
+@Table(name = "languages", schema = "scrabble")
 @NoArgsConstructor(force = true)
 public class Language {
 

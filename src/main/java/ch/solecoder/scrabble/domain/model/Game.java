@@ -14,7 +14,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 @Getter
 @AllArgsConstructor
-@Table(name = "games")
+@Table(name = "games", schema = "scrabble")
 @NoArgsConstructor(force = true)
 public class Game {
 

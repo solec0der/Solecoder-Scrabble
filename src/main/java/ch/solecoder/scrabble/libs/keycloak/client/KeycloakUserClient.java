@@ -1,6 +1,6 @@
-package ch.solecoder.scrabble.keycloak.client;
+package ch.solecoder.scrabble.libs.keycloak.client;
 
-import ch.solecoder.scrabble.keycloak.model.UserDTO;
+import ch.solecoder.scrabble.libs.keycloak.dto.UserDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
