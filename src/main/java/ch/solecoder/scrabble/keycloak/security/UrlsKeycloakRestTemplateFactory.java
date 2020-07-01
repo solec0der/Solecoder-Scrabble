@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.libs.keycloak.security;
+package ch.solecoder.scrabble.keycloak.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

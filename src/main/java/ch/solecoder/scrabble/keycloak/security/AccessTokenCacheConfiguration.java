@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.libs.keycloak.security;
+package ch.solecoder.scrabble.keycloak.security;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.libs.keycloak.model;
+package ch.solecoder.scrabble.keycloak.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.libs.keycloak.dto;
+package ch.solecoder.scrabble.keycloak.dto;
 
 import lombok.Builder;
 import lombok.Data;

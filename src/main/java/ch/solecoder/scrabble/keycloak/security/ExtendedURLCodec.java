@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.libs.keycloak.security;
+package ch.solecoder.scrabble.keycloak.security;
 
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.EncoderException;

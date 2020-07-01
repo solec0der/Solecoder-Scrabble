@@ -1,7 +1,7 @@
 package ch.solecoder.scrabble.core.config;
 
-import ch.solecoder.scrabble.libs.keycloak.client.KeycloakUserClient;
-import ch.solecoder.scrabble.libs.keycloak.exception.FeignClientStatusCodeException;
+import ch.solecoder.scrabble.keycloak.client.KeycloakUserClient;
+import ch.solecoder.scrabble.keycloak.exception.FeignClientStatusCodeException;
 import feign.Client;
 import feign.Contract;
 import feign.Feign;

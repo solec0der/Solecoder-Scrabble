@@ -26,101 +26,101 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TranslationService {
 
-  private final TranslationRepository translationRepository;
-  private final TranslationKeyRepository translationKeyRepository;
-  private final LanguageRepository languageRepository;
+    private final TranslationRepository translationRepository;
+    private final TranslationKeyRepository translationKeyRepository;
+    private final LanguageRepository languageRepository;
 
-  public TranslationDTO createTranslation(TranslationDTO translationDTO) {
-    Language language = languageRepository
-            .findById(translationDTO.getLanguage().getId())
-            .orElseThrow(LanguageNotFoundException::new);
+    public TranslationDTO createTranslation(TranslationDTO translationDTO) {
+        Language language = languageRepository
+                .findById(translationDTO.getLanguage().getId())
+                .orElseThrow(LanguageNotFoundException::new);
 
-    TranslationKey translationKey = translationKeyRepository
-            .findById(translationDTO.getTranslationKeyId())
-            .orElseThrow(TranslationKeyNotFoundException::new);
+        TranslationKey translationKey = translationKeyRepository
+                .findById(translationDTO.getTranslationKeyId())
+                .orElseThrow(TranslationKeyNotFoundException::new);
 
-    Translation translation = Translation.builder()
-            .language(language)
-            .translationKey(translationKey)
-            .value(translationDTO.getValue())
-            .build();
+        Translation translation = Translation.builder()
+                .language(language)
+                .translationKey(translationKey)
+                .value(translationDTO.getValue())
+                .build();
 
-    return TranslationConverter.convertToDTO(translationRepository.save(translation));
-  }
-
-  public TranslationKeyDTO createTranslationKey(TranslationKeyDTO translationKeyDTO) {
-    TranslationKey translationKey = TranslationConverter.convertToDomain(translationKeyDTO);
-    return TranslationConverter.convertToDTO(translationKeyRepository.save(translationKey));
-  }
-
-  public List<TranslationKeyDTO> getTranslationKeys() {
-    List<TranslationKey> translationKeys = translationKeyRepository.findAll();
-
-    return translationKeys.stream()
-            .map(TranslationConverter::convertToDTO)
-            .collect(Collectors.toList());
-  }
-
-  public TranslationKeyDTO getTranslationKeyById(long id) {
-    return TranslationConverter.convertToDTO(
-            translationKeyRepository
-                    .findById(id)
-                    .orElseThrow(TranslationKeyNotFoundException::new));
-  }
-
-  public Map<String, List<TranslationDTO>> getTranslationsAsMap() {
-    Map<String, List<TranslationDTO>> translationsAsMap = new HashMap<>();
-    List<TranslationKey> translationKeys = translationKeyRepository.findAll();
-
-    for (TranslationKey translationKey : translationKeys) {
-      List<TranslationDTO> translations = translationKey
-              .getTranslations()
-              .stream()
-              .map(TranslationConverter::convertToDTO)
-              .collect(Collectors.toList());
-
-      translationsAsMap.put(translationKey.getKey(), translations);
+        return TranslationConverter.convertToDTO(translationRepository.save(translation));
     }
-    return translationsAsMap;
-  }
 
-  public TranslationDTO updateTranslation(long id, TranslationDTO translationDTO) {
-    Translation translation = translationRepository.findById(id).orElseThrow(TranslationNotFoundException::new);
+    public TranslationKeyDTO createTranslationKey(TranslationKeyDTO translationKeyDTO) {
+        TranslationKey translationKey = TranslationConverter.convertToDomain(translationKeyDTO);
+        return TranslationConverter.convertToDTO(translationKeyRepository.save(translationKey));
+    }
 
-    Language language = languageRepository
-            .findById(translationDTO.getLanguage().getId())
-            .orElseThrow(LanguageNotFoundException::new);
+    public List<TranslationKeyDTO> getTranslationKeys() {
+        List<TranslationKey> translationKeys = translationKeyRepository.findAll();
 
-    TranslationKey translationKey = translationKeyRepository
-            .findById(translationDTO.getTranslationKeyId())
-            .orElseThrow(TranslationKeyNotFoundException::new);
+        return translationKeys.stream()
+                .map(TranslationConverter::convertToDTO)
+                .collect(Collectors.toList());
+    }
 
-    translation = translation.toBuilder()
-            .id(id)
-            .language(language)
-            .translationKey(translationKey)
-            .value(translationDTO.getValue())
-            .build();
+    public TranslationKeyDTO getTranslationKeyById(long id) {
+        return TranslationConverter.convertToDTO(
+                translationKeyRepository
+                        .findById(id)
+                        .orElseThrow(TranslationKeyNotFoundException::new));
+    }
 
-    return TranslationConverter.convertToDTO(translationRepository.save(translation));
-  }
+    public Map<String, List<TranslationDTO>> getTranslationsAsMap() {
+        Map<String, List<TranslationDTO>> translationsAsMap = new HashMap<>();
+        List<TranslationKey> translationKeys = translationKeyRepository.findAll();
 
-  public TranslationKeyDTO updateTranslationKey(long id, TranslationKeyDTO translationKeyDTO) {
-    TranslationKey translationKey = translationKeyRepository.findById(id).orElseThrow(TranslationKeyNotFoundException::new);
+        for (TranslationKey translationKey : translationKeys) {
+            List<TranslationDTO> translations = translationKey
+                    .getTranslations()
+                    .stream()
+                    .map(TranslationConverter::convertToDTO)
+                    .collect(Collectors.toList());
 
-    translationKey = translationKey.toBuilder()
-            .id(id)
-            .key(translationKeyDTO.getKey())
-            .build();
+            translationsAsMap.put(translationKey.getKey(), translations);
+        }
+        return translationsAsMap;
+    }
 
-    return TranslationConverter.convertToDTO(translationKeyRepository.save(translationKey));
-  }
+    public TranslationDTO updateTranslation(long id, TranslationDTO translationDTO) {
+        Translation translation = translationRepository.findById(id).orElseThrow(TranslationNotFoundException::new);
 
-  public void deleteTranslation(long id) {
-    translationRepository.deleteById(id);
-  }
+        Language language = languageRepository
+                .findById(translationDTO.getLanguage().getId())
+                .orElseThrow(LanguageNotFoundException::new);
 
-  public void deleteTranslationKey(long id) {
-    translationKeyRepository.deleteById(id);
-  }
+        TranslationKey translationKey = translationKeyRepository
+                .findById(translationDTO.getTranslationKeyId())
+                .orElseThrow(TranslationKeyNotFoundException::new);
+
+        translation = translation.toBuilder()
+                .id(id)
+                .language(language)
+                .translationKey(translationKey)
+                .value(translationDTO.getValue())
+                .build();
+
+        return TranslationConverter.convertToDTO(translationRepository.save(translation));
+    }
+
+    public TranslationKeyDTO updateTranslationKey(long id, TranslationKeyDTO translationKeyDTO) {
+        TranslationKey translationKey = translationKeyRepository.findById(id).orElseThrow(TranslationKeyNotFoundException::new);
+
+        translationKey = translationKey.toBuilder()
+                .id(id)
+                .key(translationKeyDTO.getKey())
+                .build();
+
+        return TranslationConverter.convertToDTO(translationKeyRepository.save(translationKey));
+    }
+
+    public void deleteTranslation(long id) {
+        translationRepository.deleteById(id);
+    }
+
+    public void deleteTranslationKey(long id) {
+        translationKeyRepository.deleteById(id);
+    }
 }

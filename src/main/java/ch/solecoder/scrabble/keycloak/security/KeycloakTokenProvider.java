@@ -1,4 +1,4 @@
-package ch.solecoder.scrabble.libs.keycloak.security;
+package ch.solecoder.scrabble.keycloak.security;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.Getter;

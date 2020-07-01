@@ -1,6 +1,6 @@
-package ch.solecoder.scrabble.libs.keycloak.repository;
+package ch.solecoder.scrabble.keycloak.repository;
 
-import ch.solecoder.scrabble.libs.keycloak.model.User;
+import ch.solecoder.scrabble.keycloak.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -5,8 +5,8 @@ spring:
     name: Solecoder Scrabble
   datasource:
     url: jdbc:postgresql://localhost:5432/solecoder?currentSchema=scrabble
-    username: postgres
-    password: root
+    username: scrabble
+    password: scrabble
   jpa:
     properties:
       hibernate:
@@ -43,5 +43,4 @@ keycloak:
   bearer-only: true
   auth-server-url: http://localhost:8080/auth
   credentials:
-    secret: 40ef18f0-aa2f-4786-ad1e-3b729fed595e
-  cors: true
+    secret: a87fc554-c300-4387-9ee2-f416f267d208

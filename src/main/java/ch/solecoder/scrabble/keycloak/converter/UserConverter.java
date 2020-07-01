@@ -1,7 +1,7 @@
-package ch.solecoder.scrabble.libs.keycloak.converter;
+package ch.solecoder.scrabble.keycloak.converter;
 
-import ch.solecoder.scrabble.libs.keycloak.dto.UserDTO;
-import ch.solecoder.scrabble.libs.keycloak.model.User;
+import ch.solecoder.scrabble.keycloak.dto.UserDTO;
+import ch.solecoder.scrabble.keycloak.model.User;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 

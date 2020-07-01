@@ -1,6 +1,6 @@
 package ch.solecoder.scrabble.core.infrastructure;
 
-import ch.solecoder.scrabble.libs.keycloak.service.KeycloakUserService;
+import ch.solecoder.scrabble.keycloak.service.KeycloakUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

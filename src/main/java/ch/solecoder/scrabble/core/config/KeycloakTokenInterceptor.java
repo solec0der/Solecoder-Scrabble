@@ -1,7 +1,7 @@
 package ch.solecoder.scrabble.core.config;
 
-import ch.solecoder.scrabble.libs.keycloak.security.KeycloakTokenProvider;
-import ch.solecoder.scrabble.libs.keycloak.security.OAuth2Credentials;
+import ch.solecoder.scrabble.keycloak.security.KeycloakTokenProvider;
+import ch.solecoder.scrabble.keycloak.security.OAuth2Credentials;
 import com.google.common.cache.Cache;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
